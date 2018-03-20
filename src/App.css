@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 
-html,
-body {
-  margin: 0;
-  min-height: 100vh;
-}
-
 .container {
   width: 100vw;
   height: 100vh;
@@ -18,5 +12,12 @@ body {
 .heading {
   font-family: 'Bree Serif';
   color: $f7f7f7;
-  font-size: 4em;
+  font-size: 5vw;
+  padding: 0 20px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 7vw;
+  }
 }
