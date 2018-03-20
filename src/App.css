@@ -8,21 +8,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #f7f7f7;
 }
 
 .heading {
   font-family: 'Bree Serif';
-  color: #333333;
+  color: #4a4a4a;
   font-size: 5vw;
   padding: 0 20px;
-  margin-top: 0;
+  margin: 0 0 10px 0;
 }
 
 .app__colors-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
+  max-width: 600px;
   padding: 20px 0;
 }
 
@@ -31,6 +33,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 50%;
+  height: 100%;
   margin: 0 10px;
 }
 
@@ -38,13 +42,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  border-radius: 5px;
 }
 
 .color-type--text {
-  font-size: 0.8em;
-  border-bottom: 2px solid #333;
+  font-size: 0.7em;
+  color: #4a4a4a;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #4a4a4a;
   margin: 0;
 }
 
@@ -65,9 +73,15 @@ input.app__input--color {
   border-radius: 3px;
   outline: 0;
   border: 0;
+  margin: 20px 0;
   height: 100px;
   width: 100px;
   cursor: pointer;
+}
+
+input.app__input--color::-webkit-color-swatch {
+    border-color: #fff;
+    opacity: 0;
 }
 
 .app__input--color::after {

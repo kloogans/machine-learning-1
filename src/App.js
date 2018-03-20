@@ -71,19 +71,19 @@ class App extends Component {
     return (
       <div className='container'>
         <h1 className='heading'>
-          Complimentary Colors
+          Smart Colors
         </h1>
         <div className='app__colors-wrapper'>
           <div className='colors-container'>
             <h3 className='color-type--text'>Primary</h3>
-            <p className='color-name'>{this.state.primaryColorText}</p>
+            <p style={{ color: this.state.backgroundColor }} className='color-name'>{this.state.primaryColorText}</p>
             <div style={containerStyle} className='app__complimentary-color'>
               <span className='color--hex' style={{ color: this.state.fontColor }}>{this.state.backgroundColor}</span>
             </div>
           </div>
           <div className='colors-container'>
             <h3 className='color-type--text'>Secondary</h3>
-            <p className='color-name'>{this.state.secondaryColorText}</p>
+            <p style={{ color: this.state.complimentaryColor }} className='color-name'>{this.state.secondaryColorText}</p>
             <div style={complimentaryColorStyle} className='app__complimentary-color'>
               <span className='color--hex' style={{ color: this.state.backgroundColor }}>{this.state.complimentaryColor}</span>
             </div>
@@ -93,8 +93,8 @@ class App extends Component {
                type='color'
                onChange={this.changeColor}
                className='app__input--color'
-               defaultValue={randomColor()}
-               style={{ color: this.state.complimentaryColor }}/>
+               defaultValue='#ffffff'
+               style={{ backgroundColor: this.state.backgroundColor, color: this.state.complimentaryColor }}/>
       </div>
     )
   }
