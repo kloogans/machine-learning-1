@@ -90,7 +90,7 @@ class App extends Component {
                      type='color'
                      onChange={this.changePrimaryColor}
                      className='input--color'
-                     defaultValue=''
+                     defaultValue='#ffffff'
                      style={{ backgroundColor: this.state.primaryColor,
                               color: this.state.secondaryColor
                             }}
@@ -112,7 +112,7 @@ class App extends Component {
                      type='color'
                      onChange={this.changeSecondaryColor}
                      className='input--color'
-                     defaultValue=''
+                     defaultValue='#ffffff'
                      style={{ backgroundColor: this.state.secondaryColor,
                               color: this.state.primaryColor
                             }}
