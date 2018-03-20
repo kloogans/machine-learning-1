@@ -70,6 +70,7 @@ class App extends Component {
     }
     return (
       <div className='container'>
+        <div className='section__wrapper'>
         <h1 className='heading'>
           Smart Colors
         </h1>
@@ -95,6 +96,7 @@ class App extends Component {
                className='app__input--color'
                defaultValue='#ffffff'
                style={{ backgroundColor: this.state.backgroundColor, color: this.state.complimentaryColor }}/>
+         </div>
       </div>
     )
   }
