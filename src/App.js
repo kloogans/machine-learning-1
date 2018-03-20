@@ -29,22 +29,24 @@ class App extends Component {
 
     setColors = color => {
       const rgb = this.hexToRgb(color)
-      const result = brain.likely(rgb, network)
+      const resultPrimary = brain.likely(rgb, network)
+      const primaryColor = resultPrimary
       const complimentaryColor = getComplimentaryColor(color)
-      const fontColor = result === 'dark' ? '#f7f7f7' : '#333333'
+      const rgbSecondary = this.hexToRgb(complimentaryColor)
+      const resultSecondary = brain.likely(rgbSecondary, network)
+      console.log(resultSecondary)
       this.setState({
         backgroundColor: color,
         fontColor: complimentaryColor,
-        complimentaryColor: complimentaryColor
+        complimentaryColor: complimentaryColor,
+        primaryColorText: resultPrimary.toString(),
+        secondaryColorText: resultSecondary.toString()
       })
 
     }
 
     changeColor = e => {
       const hex = e.target.value
-      const rgb = this.hexToRgb(hex)
-      const result = brain.likely(rgb, network)
-      const colorResult = result === 'red' ? 'RED!' : 'NOT RED!'
       this.setColors(hex)
     }
 
@@ -73,13 +75,15 @@ class App extends Component {
         </h1>
         <div className='app__colors-wrapper'>
           <div className='colors-container'>
-            <h3>Primary</h3>
+            <h3 className='color-type--text'>Primary</h3>
+            <p className='color-name'>{this.state.primaryColorText}</p>
             <div style={containerStyle} className='app__complimentary-color'>
               <span className='color--hex' style={{ color: this.state.fontColor }}>{this.state.backgroundColor}</span>
             </div>
           </div>
           <div className='colors-container'>
-            <h3>Secondary</h3>
+            <h3 className='color-type--text'>Secondary</h3>
+            <p className='color-name'>{this.state.secondaryColorText}</p>
             <div style={complimentaryColorStyle} className='app__complimentary-color'>
               <span className='color--hex' style={{ color: this.state.backgroundColor }}>{this.state.complimentaryColor}</span>
             </div>

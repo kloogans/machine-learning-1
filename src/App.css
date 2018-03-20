@@ -12,9 +12,10 @@
 
 .heading {
   font-family: 'Bree Serif';
-  color: $f7f7f7;
+  color: #333333;
   font-size: 5vw;
   padding: 0 20px;
+  margin-top: 0;
 }
 
 .app__colors-wrapper {
@@ -41,10 +42,22 @@
   height: 200px;
 }
 
+.color-type--text {
+  font-size: 0.8em;
+  border-bottom: 2px solid #333;
+  margin: 0;
+}
+
 .color--hex {
   font-size: 2em;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+.color-name {
+  font-family: 'Bree Serif';
+  font-size: 2em;
+  margin: 0 0 10px 0;
 }
 
 input.app__input--color {
