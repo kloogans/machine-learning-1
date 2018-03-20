@@ -18,10 +18,10 @@ class App extends Component {
 
   componentDidMount () {
     network.train(trainingData)
-    this.setColors(randomColor())
+    this.setPrimaryColors(randomColor())
   }
 
-  setColors = color => {
+  setPrimaryColors = color => {
     const rgbPrimary = convertHexToRgb(color)
     const rgbSecondary = convertHexToRgb(getComplimentaryColor(color))
     const resultPrimary = brain.likely(rgbPrimary, network)
@@ -41,7 +41,6 @@ class App extends Component {
     const rgbSecondary = convertHexToRgb(getComplimentaryColor(color))
     const resultPrimary = brain.likely(rgbPrimary, network)
     const resultSecondary = brain.likely(rgbSecondary, network)
-    console.log(rgbPrimary)
 
     this.setState({
       primaryColor: getComplimentaryColor(color),
@@ -53,7 +52,7 @@ class App extends Component {
 
   changePrimaryColor = e => {
     const hex = e.target.value
-    this.setColors(hex)
+    this.setPrimaryColors(hex)
   }
 
   changeSecondaryColor = e => {
@@ -78,7 +77,6 @@ class App extends Component {
         </h1>
         <div className='colors__wrapper'>
           <div className='color__container'>
-            {/* <h3 className='heading--med'>Primary</h3> */}
             <p style={{ color: this.state.primaryColor }}
                className='text--regular'>
               {this.state.primaryColorText}
@@ -92,14 +90,14 @@ class App extends Component {
                      type='color'
                      onChange={this.changePrimaryColor}
                      className='input--color'
-                     defaultValue='#ffffff'
+                     defaultValue=''
                      style={{ backgroundColor: this.state.primaryColor,
                               color: this.state.secondaryColor
-                            }}/>
+                            }}
+              />
             </div>
           </div>
           <div className='color__container'>
-            {/* <h3 className='heading--med'>Secondary</h3> */}
             <p style={{ color: this.state.secondaryColor }}
                className='text--regular'>
               {this.state.secondaryColorText}
@@ -114,10 +112,11 @@ class App extends Component {
                      type='color'
                      onChange={this.changeSecondaryColor}
                      className='input--color'
-                     defaultValue='#ffffff'
+                     defaultValue=''
                      style={{ backgroundColor: this.state.secondaryColor,
                               color: this.state.primaryColor
-                            }}/>
+                            }}
+              />
             </div>
           </div>
         </div>
