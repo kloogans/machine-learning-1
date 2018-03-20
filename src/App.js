@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Footer from './Footer'
 import brain from 'brain.js'
 import trainingData from './trainingData'
 import { getComplimentaryColor, convertHexToRgb } from './utils/convert'
@@ -35,9 +36,29 @@ class App extends Component {
     })
   }
 
-  changeColor = e => {
+  setSecondaryColors = color => {
+    const rgbPrimary = convertHexToRgb(color)
+    const rgbSecondary = convertHexToRgb(getComplimentaryColor(color))
+    const resultPrimary = brain.likely(rgbPrimary, network)
+    const resultSecondary = brain.likely(rgbSecondary, network)
+    console.log(rgbPrimary)
+
+    this.setState({
+      primaryColor: getComplimentaryColor(color),
+      secondaryColor: color,
+      primaryColorText: resultSecondary,
+      secondaryColorText: resultPrimary
+    })
+  }
+
+  changePrimaryColor = e => {
     const hex = e.target.value
     this.setColors(hex)
+  }
+
+  changeSecondaryColor = e => {
+    const hex = e.target.value
+    this.setSecondaryColors(hex)
   }
 
   render() {
@@ -57,43 +78,52 @@ class App extends Component {
         </h1>
         <div className='colors__wrapper'>
           <div className='color__container'>
-            <h3 className='heading--med'>Primary</h3>
+            {/* <h3 className='heading--med'>Primary</h3> */}
             <p style={{ color: this.state.primaryColor }}
                className='text--regular'>
               {this.state.primaryColorText}
             </p>
             <div style={primaryColors} className='color__box'>
-              <span className='text__color--hex'
+              <div className='text__color--hex'
                     style={{ color: this.state.secondaryColor }}>
                 {this.state.primaryColor}
-              </span>
+              </div>
+              <input ref='colorInput'
+                     type='color'
+                     onChange={this.changePrimaryColor}
+                     className='input--color'
+                     defaultValue='#ffffff'
+                     style={{ backgroundColor: this.state.primaryColor,
+                              color: this.state.secondaryColor
+                            }}/>
             </div>
           </div>
           <div className='color__container'>
-            <h3 className='heading--med'>Secondary</h3>
+            {/* <h3 className='heading--med'>Secondary</h3> */}
             <p style={{ color: this.state.secondaryColor }}
                className='text--regular'>
               {this.state.secondaryColorText}
             </p>
             <div style={secondaryColors}
                  className='color__box'>
-              <span className='text__color--hex'
+              <div className='text__color--hex'
                     style={{ color: this.state.primaryColor }}>
                 {this.state.secondaryColor}
-              </span>
+              </div>
+              <input ref='colorInput'
+                     type='color'
+                     onChange={this.changeSecondaryColor}
+                     className='input--color'
+                     defaultValue='#ffffff'
+                     style={{ backgroundColor: this.state.secondaryColor,
+                              color: this.state.primaryColor
+                            }}/>
             </div>
           </div>
         </div>
-        <input ref='colorInput'
-               type='color'
-               onChange={this.changeColor}
-               className='input--color'
-               defaultValue='#ffffff'
-               style={{ backgroundColor: this.state.primaryColor,
-                        color: this.state.secondaryColor
-                      }}/>
-         </div>
-      </div>
+       </div>
+       <Footer />
+    </div>
     )
   }
 }
