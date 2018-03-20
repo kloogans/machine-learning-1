@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-.container {
+.app__wrapper {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -29,7 +29,9 @@
   border-radius: 5px;
 }
 
-.heading {
+/* Text */
+
+.heading--lrg {
   font-family: 'Bree Serif';
   color: #4a4a4a;
   font-size: 5vw;
@@ -37,7 +39,30 @@
   margin: 0 0 10px 0;
 }
 
-.app__colors-wrapper {
+.heading--med {
+  font-size: 0.7em;
+  color: #4a4a4a;
+  padding-bottom: 2px;
+  border-bottom: 2px solid #4a4a4a;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.text--regular {
+  font-family: 'Bree Serif';
+  font-size: 2em;
+  margin: 0 0 10px 0;
+}
+
+.text__color--hex {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Color Boxes */
+
+.colors__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +71,7 @@
   padding: 20px 0;
 }
 
-.colors-container {
+.color__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,7 +81,7 @@
   margin: 0 10px;
 }
 
-.app__complimentary-color {
+.color__box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,28 +91,9 @@
   border-radius: 5px;
 }
 
-.color-type--text {
-  font-size: 0.7em;
-  color: #4a4a4a;
-  padding-bottom: 2px;
-  border-bottom: 2px solid #4a4a4a;
-  margin: 0;
-  text-transform: uppercase;
-}
+/* Input */
 
-.color--hex {
-  font-size: 2em;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.color-name {
-  font-family: 'Bree Serif';
-  font-size: 2em;
-  margin: 0 0 10px 0;
-}
-
-input.app__input--color {
+input.input--color {
   position: relative;
   border-radius: 3px;
   outline: 0;
@@ -98,12 +104,12 @@ input.app__input--color {
   cursor: pointer;
 }
 
-input.app__input--color::-webkit-color-swatch {
+input.input--color::-webkit-color-swatch {
     border-color: #fff;
     opacity: 0;
 }
 
-.app__input--color::after {
+.input--color::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -117,8 +123,10 @@ input.app__input--color::-webkit-color-swatch {
   font-size: 3em;
 }
 
+/* Mobile */
+
 @media (max-width: 768px) {
-  .heading {
+  .heading--lrg {
     font-size: 7vw;
   }
 }
