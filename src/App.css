@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
 .container {
   width: 100vw;
@@ -14,6 +15,30 @@
   color: $f7f7f7;
   font-size: 5vw;
   padding: 0 20px;
+}
+
+input.app__input--color {
+  position: relative;
+  border-radius: 3px;
+  outline: 0;
+  border: 0;
+  height: 100px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.app__input--color::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: FontAwesome;
+  content: '\f1fc';
+  font-size: 3em;
 }
 
 @media (max-width: 768px) {
