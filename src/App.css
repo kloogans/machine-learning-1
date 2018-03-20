@@ -17,6 +17,36 @@
   padding: 0 20px;
 }
 
+.app__colors-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding: 20px 0;
+}
+
+.colors-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.app__complimentary-color {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+}
+
+.color--hex {
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
 input.app__input--color {
   position: relative;
   border-radius: 3px;

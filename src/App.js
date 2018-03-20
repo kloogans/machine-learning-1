@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import brain from 'brain.js'
+import trainingData from './trainingData'
+import getComplimentaryColor from './utils/convert'
 import randomColor from 'randomcolor'
 import './App.css'
 
@@ -12,21 +14,8 @@ class App extends Component {
   }
 
   componentDidMount () {
-    network.train([
-      { input: { r: 0.62, g: 0.72, b: 0.88 }, output: { light: 1 } },
-      { input: { r: 0.1, g: 0.84, b: 0.72 }, output: { light: 1 } },
-      { input: { r: 0.33, g: 0.24, b: 0.29 }, output: { dark: 1 } },
-      { input: { r: 0.74, g: 0.78, b: 0.86 }, output: { light: 1 } },
-      { input: { r: 0.31, g: 0.35, b: 0.41 }, output: { dark: 1 } },
-      { input: { r: 0.23, g: 0.27, b: 0.91 }, output: { light: 1 } }
-    ])
-    const rgb = this.hexToRgb(randomColor())
-    const result = brain.likely(rgb, network)
-    const fontColor = result === 'dark' ? '#f7f7f7' : '#333333'
-    this.setState({
-      backgroundColor: randomColor(),
-      fontColor: fontColor
-    })
+    network.train(trainingData)
+    this.setColors(randomColor())
   }
 
   hexToRgb = hex => {
@@ -38,20 +27,33 @@ class App extends Component {
       } : null
     }
 
+    setColors = color => {
+      const rgb = this.hexToRgb(color)
+      const result = brain.likely(rgb, network)
+      const complimentaryColor = getComplimentaryColor(color)
+      const fontColor = result === 'dark' ? '#f7f7f7' : '#333333'
+      this.setState({
+        backgroundColor: color,
+        fontColor: complimentaryColor,
+        complimentaryColor: complimentaryColor
+      })
+
+    }
+
     changeColor = e => {
       const hex = e.target.value
       const rgb = this.hexToRgb(hex)
       const result = brain.likely(rgb, network)
-      const fontColor = result === 'dark' ? '#f7f7f7' : '#333333'
-      this.setState({
-        backgroundColor: hex,
-        fontColor: fontColor
-      })
+      const colorResult = result === 'red' ? 'RED!' : 'NOT RED!'
+      this.setColors(hex)
     }
+
+
 
   render() {
     const containerStyle = {
-      backgroundColor: this.state.backgroundColor
+      backgroundColor: this.state.backgroundColor,
+      color: this.state.backgroundColor
     }
     const fontStyle = {
       color: this.state.fontColor
@@ -60,17 +62,35 @@ class App extends Component {
       backgroundColor: this.state.fontColor,
       color: this.state.fontColor
     }
+    const complimentaryColorStyle = {
+      backgroundColor: this.state.complimentaryColor,
+      color: this.state.complimentaryColor
+    }
     return (
-      <div className='container' style={containerStyle}>
-        <h1 className='heading' style={fontStyle}>
-          Font color will change based on color lightness via machine learning.
+      <div className='container'>
+        <h1 className='heading'>
+          Complimentary Colors
         </h1>
+        <div className='app__colors-wrapper'>
+          <div className='colors-container'>
+            <h3>Primary</h3>
+            <div style={containerStyle} className='app__complimentary-color'>
+              <span className='color--hex' style={{ color: this.state.fontColor }}>{this.state.backgroundColor}</span>
+            </div>
+          </div>
+          <div className='colors-container'>
+            <h3>Secondary</h3>
+            <div style={complimentaryColorStyle} className='app__complimentary-color'>
+              <span className='color--hex' style={{ color: this.state.backgroundColor }}>{this.state.complimentaryColor}</span>
+            </div>
+          </div>
+        </div>
         <input ref='colorInput'
                type='color'
                onChange={this.changeColor}
                className='app__input--color'
                defaultValue={randomColor()}
-               style={inputStyle}/>
+               style={{ color: this.state.complimentaryColor }}/>
       </div>
     )
   }
