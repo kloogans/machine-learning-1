@@ -1,6 +1,6 @@
 # Smart Colors
 
-![](./colors-ss.png)
+![](colors-ss.png)
 
 A lightweight app that uses machine learning to detect selected color names
 and their complimentary colors. It uses brain.js to train and run a neural network
