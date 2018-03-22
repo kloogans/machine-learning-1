@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Loader from './loader/Loader'
 import brain from 'brain.js'
-import trainingData from './trainingData'
+import neuralData from './utils/neuralData'
 import { getComplimentaryColor, convertHexToRgb } from './utils/convert'
 import randomColor from 'randomcolor'
-import './App.css'
+
 const network = new brain.NeuralNetwork()
 
 class Main extends Component {
@@ -12,53 +11,32 @@ class Main extends Component {
     primaryColor: null,
     secondaryColor: null,
     primaryColorText: null,
-    secondaryColorText: null,
-    loaded: false
+    secondaryColorText: null
   }
 
   componentDidMount () {
-    network.train(trainingData)
-    this.setPrimaryColors(randomColor())
-    this.setState({ loaded: true })
+    network.train(neuralData)
+    this.setColors(randomColor(), true)
   }
 
-  setPrimaryColors = color => {
+  setColors = (color, isPrimary) => {
     const rgbPrimary = convertHexToRgb(color)
     const rgbSecondary = convertHexToRgb(getComplimentaryColor(color))
-    const resultPrimary = brain.likely(rgbPrimary, network)
-    const resultSecondary = brain.likely(rgbSecondary, network)
-    console.log(rgbPrimary)
-
-    this.setState({
-      primaryColor: color,
-      secondaryColor: getComplimentaryColor(color),
-      primaryColorText: resultPrimary.toString(),
-      secondaryColorText: resultSecondary.toString()
-    })
-  }
-
-  setSecondaryColors = color => {
-    const rgbPrimary = convertHexToRgb(color)
-    const rgbSecondary = convertHexToRgb(getComplimentaryColor(color))
-    const resultPrimary = brain.likely(rgbPrimary, network)
-    const resultSecondary = brain.likely(rgbSecondary, network)
-
-    this.setState({
-      primaryColor: getComplimentaryColor(color),
-      secondaryColor: color,
-      primaryColorText: resultSecondary,
-      secondaryColorText: resultPrimary
-    })
-  }
-
-  changePrimaryColor = e => {
-    const hex = e.target.value
-    this.setPrimaryColors(hex)
-  }
-
-  changeSecondaryColor = e => {
-    const hex = e.target.value
-    this.setSecondaryColors(hex)
+    if (isPrimary) {
+      this.setState({
+        primaryColor: color,
+        secondaryColor: getComplimentaryColor(color),
+        primaryColorText: brain.likely(rgbPrimary, network),
+        secondaryColorText: brain.likely(rgbSecondary, network)
+      })
+    } else {
+      this.setState({
+        primaryColor: getComplimentaryColor(color),
+        secondaryColor: color,
+        primaryColorText: brain.likely(rgbSecondary, network),
+        secondaryColorText: brain.likely(rgbPrimary, network)
+      })
+    }
   }
 
   render () {
@@ -70,7 +48,6 @@ class Main extends Component {
       backgroundColor: this.state.secondaryColor,
       color: this.state.secondaryColor
     }
-    if (this.state.loaded) {
       return <div className='section__wrapper'>
         <h1 className='heading--lrg'>
           Smart Colors
@@ -81,19 +58,18 @@ class Main extends Component {
               className='text--regular'>
               {this.state.primaryColorText}
             </p>
-            <div style={primaryColors} className='color__box'>
+            <div style={primaryColors} className='color-box'>
               <div className='text__color--hex'
                 style={{ color: this.state.secondaryColor }}>
                 {this.state.primaryColor}
               </div>
               <input ref='colorInput'
                 type='color'
-                onChange={this.changePrimaryColor}
+                onChange={(e) => this.setColors(e.target.value, true)}
                 className='input--color'
                 defaultValue='#ffffff'
                 style={{ backgroundColor: this.state.primaryColor,
-                  color: this.state.secondaryColor
-                }}
+                  color: this.state.secondaryColor }}
               />
             </div>
           </div>
@@ -103,27 +79,23 @@ class Main extends Component {
               {this.state.secondaryColorText}
             </p>
             <div style={secondaryColors}
-              className='color__box'>
+              className='color-box'>
               <div className='text__color--hex'
                 style={{ color: this.state.primaryColor }}>
                 {this.state.secondaryColor}
               </div>
               <input ref='colorInput'
                 type='color'
-                onChange={this.changeSecondaryColor}
+                onChange={(e) => this.setColors(e.target.value, false)}
                 className='input--color'
                 defaultValue='#ffffff'
                 style={{ backgroundColor: this.state.secondaryColor,
-                  color: this.state.primaryColor
-                }}
+                  color: this.state.primaryColor }}
               />
             </div>
           </div>
         </div>
       </div>
-    } else {
-      return <Loader />
-    }
   }
 }
 
