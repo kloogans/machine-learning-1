@@ -16,4 +16,4 @@ to determine color names from inputted RGB data.
 - `npm run start` or `yarn start`
 - Enjoy
 
-*Will not work in Safari for now, which does not support HTML color input types.*
+*Will not work in Safari for now, which does not support HTML5 color input type.*
