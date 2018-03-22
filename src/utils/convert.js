@@ -1,5 +1,5 @@
 const getComplimentaryColor = hex => {
-  let rgb = 'rgb(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16) }).join(',') + ')'
+  let rgb = 'rgb(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map((l) => { return parseInt(hex.length%2 ? l+l : l, 16) }).join(',') + ')'
   rgb = rgb.replace(/[^\d,]/g, '').split(',')
   let r = rgb[0], g = rgb[1], b = rgb[2]
   r /= 255.0

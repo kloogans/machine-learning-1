@@ -7,8 +7,8 @@ class App extends Component {
     return (
       <div className='app__wrapper'>
         <Main />
-       <Footer />
-    </div>
+        <Footer />
+      </div>
     )
   }
 }
