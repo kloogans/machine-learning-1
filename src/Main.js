@@ -39,14 +39,10 @@ class Main extends Component {
   }
 
   render () {
-    const primary = this.state.primaryColor
-    const secondary = this.state.secondaryColor
       return <div className='section__wrapper'>
-        <h1 className='heading--lrg'>
-          Smart Colors
-        </h1>
-        <Colors primary={primary}
-                secondary={secondary}
+        <h1 className='heading--lrg'>Smart Colors</h1>
+        <Colors primary={this.state.primaryColor}
+                secondary={this.state.secondaryColor}
                 setColors={this.setColors}
                 primaryColorText={this.state.primaryColorText}
                 secondaryColorText={this.state.secondaryColorText} />
