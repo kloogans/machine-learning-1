@@ -9,12 +9,12 @@ body {
 
 .app__wrapper {
   position: relative;
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
   background-color: rgb(136, 213, 241);
   background-image: url('/img/memphis-colorful.png');
   background-repeat: repeat;
@@ -25,13 +25,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-width: 700px;
   width: 75vw;
+  max-width: 700px;
   height: 80vh;
   padding: 10px;
-  background-color: #fff;
-  border-radius: 5px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-color: #fff;
   transform: rotate(-1deg);
 }
 
@@ -46,21 +46,21 @@ body {
 }
 
 .heading--med {
-  font-size: 0.7em;
-  color: #4a4a4a;
+  margin: 0;
   padding-bottom: 2px;
   border-bottom: 2px solid #4a4a4a;
-  margin: 0;
+  font-size: 0.7em;
+  color: #4a4a4a;
   text-transform: uppercase;
 }
 
 .text--regular {
+  margin: 0 0 10px 0;
   font-family: 'Bree Serif';
   font-size: 2em;
-  margin: 0 0 10px 0;
 }
 
-.text__color--hex {
+.text--hex {
   font-size: 2em;
   font-weight: bold;
   text-transform: uppercase;
@@ -77,7 +77,7 @@ body {
   padding: 20px 0;
 }
 
-.color__container {
+.color-box__container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -100,7 +100,7 @@ body {
 
 /* Inputs */
 
-input.input--color {
+input.input__color {
   position: relative;
   border-radius: 3px;
   outline: 0;
@@ -110,12 +110,12 @@ input.input--color {
   cursor: pointer;
 }
 
-input.input--color::-webkit-color-swatch {
-    border-color: #fff;
-    opacity: 0;
+input.input__color::-webkit-color-swatch {
+  border-color: #fff;
+  opacity: 0;
 }
 
-.input--color::after {
+.input__color::after {
   position: absolute;
   top: 0;
   left: 0;
@@ -132,15 +132,15 @@ input.input--color::-webkit-color-swatch {
 /* Footer */
 
 .footer__wrapper {
-  width: 100vw;
   position: absolute;
   bottom: 0;
   left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
+  width: 100vw;
   padding: 10px 0;
+  background-color: transparent;
 }
 
 a.footer__link {

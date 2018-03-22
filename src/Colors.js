@@ -6,32 +6,32 @@ class Colors extends Component {
     const secondary = this.props.secondary
     return (
     <div className='colors__wrapper'>
-      <div className='color__container'>
+      <div className='color-box__container'>
         <p style={{ color: primary }} className='text--regular'>
           {this.props.primaryColorText}
         </p>
         <div style={{ backgroundColor: primary }} className='color-box'>
-          <div className='text__color--hex' style={{ color: secondary }}>
+          <div className='text--hex' style={{ color: secondary }}>
             {primary}
           </div>
           <input type='color'
                  onChange={e => this.props.setColors(e.target.value, true)}
-                 className='input--color'
+                 className='input__color'
                  defaultValue='#ffffff'
                  style={{ backgroundColor: primary, color: secondary }} />
         </div>
       </div>
-      <div className='color__container'>
+      <div className='color-box__container'>
         <p style={{ color: secondary }} className='text--regular'>
           {this.props.secondaryColorText}
         </p>
         <div style={{ backgroundColor: secondary }} className='color-box'>
-          <div className='text__color--hex' style={{ color: primary }}>
+          <div className='text--hex' style={{ color: primary }}>
             {secondary}
           </div>
           <input type='color'
                  onChange={e => this.props.setColors(e.target.value, false)}
-                 className='input--color'
+                 className='input__color'
                  defaultValue='#ffffff'
                  style={{ backgroundColor: secondary, color: primary }} />
         </div>
